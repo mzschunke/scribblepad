@@ -23,6 +23,8 @@ function Cell() {
     return myCell;
 }
 
-const test = Cell();
-console.log(test);
+for (let currywurst = 0; currywurst<value**2; currywurst++){
+    const newCell = Cell();
+    gridContainer.append(newCell);
+}
 
