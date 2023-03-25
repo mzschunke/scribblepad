@@ -29,7 +29,7 @@ inputContainer.style.padding = "20px";
 inputContainer.style.background = "white";
 inputContainer.style.borderRadius = "10px";
 
-const title = document.createTextNode("Hi freind, ");
+const title = document.createTextNode("Hi friends, ");
 title.type = "text";
 
 const infoText = document.createTextNode(
