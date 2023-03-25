@@ -15,9 +15,9 @@ const inputContainer = document.createElement("div");
 
 const inputField = document.createElement("input");
 inputField.type = "number";
-inputField.addEventListener("change", => {
-    
-})
+inputField.addEventListener("change", () => {
+  resetGrid(Grid);
+});
 
 const colorPicker = document.createElement("input");
 colorPicker.type = "color";
@@ -28,6 +28,9 @@ colorPicker.addEventListener("input", (event) => {
 const resetButton = document.createElement("button");
 resetButton.type = "button";
 resetButton.textContent = "Reset Grid";
+resetButton.addEventListener("click", (event) => {
+  resetGrid(Grid);
+});
 
 inputContainer.append(inputField, colorPicker, resetButton);
 
@@ -56,5 +59,5 @@ function resetGrid(callback) {
   while (gridContainer.firstChild) {
     gridContainer.removeChild(gridContainer.lastChild);
   }
-  callback(6, Cell);
+  callback(inputField.value, Cell);
 }
