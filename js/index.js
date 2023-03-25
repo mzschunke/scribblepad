@@ -22,7 +22,15 @@ function Cell() {
     }) 
     return myCell;
 }
+function Grid(value, callback) {
+    gridContainer.style.display = "grid";
+    gridContainer.style.gridTemplateRows = `repeat(${value}, 1fr)`
+    gridContainer.style.gridTemplateColumns = `repeat(${value}, 1fr)`
 
-const test = Cell();
-console.log(test);
+for (let currywurst = 0; currywurst<value**2; currywurst++){
+const newCell = callback();
+gridContainer.append(newCell);
+}
+}
 
+Grid(3, Cell);
