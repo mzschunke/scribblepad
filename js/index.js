@@ -52,6 +52,7 @@ colorPicker.addEventListener("input", (event) => {
 const randomColorCheck = document.createElement("input");
 randomColorCheck.type = "checkbox";
 randomColorCheck.id = "checkRandomColor";
+randomColorCheck.setAttribute("data-js", "checkRandomColor");
 
 const labelColorCheck = document.createElement("label");
 labelColorCheck.htmlFor = "checkRandomColor";
@@ -86,7 +87,6 @@ function Cell() {
   myCell.addEventListener("mouseover", (event) => {
     event.target.style.backgroundColor = randomColor();
   });
-  //  randomColor();
   return myCell;
 }
 function Grid(value, callback) {
@@ -109,5 +109,9 @@ function resetGrid(callback) {
 
 function randomColor() {
   const myNum = Math.round(Math.random() * (1000 - 100));
-  return "#" + (myNum + 100).toString();
+  const myCheck = document.querySelector(
+    `[data-js="checkRandomColor"]`
+  ).checked;
+  //  console.log(myCheck);
+  return myCheck ? "#" + (myNum + 100).toString() : color;
 }
