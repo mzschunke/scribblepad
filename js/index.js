@@ -49,6 +49,13 @@ colorPicker.type = "color";
 colorPicker.addEventListener("input", (event) => {
   color = event.target.value;
 });
+const randomColorCheck = document.createElement("input");
+randomColorCheck.type = "checkbox";
+randomColorCheck.id = "checkRandomColor";
+
+const labelColorCheck = document.createElement("label");
+labelColorCheck.htmlFor = "checkRandomColor";
+labelColorCheck.textContent = "Check for random color";
 
 const resetText = document.createTextNode("To reset just click here:");
 resetText.type = "text";
@@ -65,6 +72,8 @@ inputContainer.append(
   infoText,
   inputField,
   colorPicker,
+  labelColorCheck,
+  randomColorCheck,
   resetText,
   resetButton
 );
