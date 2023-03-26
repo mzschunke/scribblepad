@@ -75,8 +75,9 @@ function Cell() {
   const myCell = document.createElement("div");
   myCell.setAttribute("data-js", "mycell");
   myCell.addEventListener("mouseover", (event) => {
-    event.target.style.backgroundColor = color;
+    event.target.style.backgroundColor = randomColor();
   });
+  //  randomColor();
   return myCell;
 }
 function Grid(value, callback) {
@@ -95,4 +96,9 @@ function resetGrid(callback) {
     gridContainer.removeChild(gridContainer.lastChild);
   }
   callback(inputField.value, Cell);
+}
+
+function randomColor() {
+  const myNum = Math.round(Math.random() * (1000 - 100));
+  return "#" + (myNum + 100).toString();
 }
