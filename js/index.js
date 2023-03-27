@@ -3,31 +3,11 @@ const app = document.querySelector('[data-js="app"]');
 let color = "#000";
 let text = "";
 
-app.style.height = "100vh";
-app.style.display = "flex";
-app.style.alignItems = "center";
-app.style.flexDirection = "column";
-app.style.backgroundColor = "lightblue";
-app.style.gap = "30px";
-app.style.padding = "20px";
-
 const gridContainer = document.createElement("div");
-gridContainer.style.border = "2px solid black";
-gridContainer.style.width = "50%";
-gridContainer.style.height = "50%";
-gridContainer.style.background = "white";
+gridContainer.setAttribute("data-js", "gridContainer")
 
 const inputContainer = document.createElement("div");
-inputContainer.style.display = "flex";
-inputContainer.style.flexDirection = "column";
-inputContainer.style.alignItems = "center";
-inputContainer.style.textAlign = "center";
-inputContainer.style.gap = "15px";
-inputContainer.style.border = "0px solid black";
-inputContainer.style.width = "70%";
-inputContainer.style.padding = "20px";
-inputContainer.style.background = "white";
-inputContainer.style.borderRadius = "10px";
+inputContainer.setAttribute("data-js", "inputContainer")
 
 const title = document.createTextNode("Hi friends, ");
 title.type = "text";
@@ -39,9 +19,10 @@ infoText.type = "text";
 
 const inputField = document.createElement("input");
 inputField.type = "number";
-inputField.addEventListener("change", () => {
-  resetGrid(Grid);
-});
+inputField.defaultValue = 10;
+inputField.min = 6;
+inputField.max = 64;
+inputField.addEventListener("change", () => resetGrid(Grid));
 
 const colorPicker = document.createElement("input");
 colorPicker.type = "color";
@@ -64,9 +45,7 @@ resetText.type = "text";
 const resetButton = document.createElement("button");
 resetButton.type = "button";
 resetButton.textContent = "Reset Grid";
-resetButton.addEventListener("click", (event) => {
-  resetGrid(Grid);
-});
+resetButton.addEventListener("click", () => resetGrid(Grid));
 
 inputContainer.append(
   title,
@@ -90,11 +69,10 @@ function Cell() {
   return myCell;
 }
 function Grid(value, callback) {
-  gridContainer.style.display = "grid";
   gridContainer.style.gridTemplateRows = `repeat(${value}, 1fr)`;
   gridContainer.style.gridTemplateColumns = `repeat(${value}, 1fr)`;
 
-  for (let currywurst = 0; currywurst < value ** 2; currywurst++) {
+  for (let i = 0; i < value ** 2; i+=1) {
     const newCell = callback();
     gridContainer.append(newCell);
   }
@@ -115,3 +93,5 @@ function randomColor() {
   //  console.log(myCheck);
   return myCheck ? "#" + (myNum + 100).toString() : color;
 }
+
+Grid(inputField.value, Cell)
